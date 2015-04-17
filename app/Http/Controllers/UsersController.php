@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests\UserSignupRequest;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller {
 
@@ -40,9 +43,24 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(UserSignupRequest $request)
+	public function store(Request $request)
 	{
-            
+//            return $this->user->rules;
+            $v = Validator::make($request->all(), $this->user->rules);
+
+            if ($v->fails()) {
+                return $v->errors()->all();
+            }
+//            if($this->validate($request, $this->user->rules)->fails()){
+//                return "FAILED";
+//            }
+//            $this->validate($request, [
+//                'fname' => 'required|max:255',
+//                'lname' => 'required',
+//            ]);
+            $this->user->fill($request->all());
+            return $this->user;
+//            return $request->all();
 	}
 
 	/**

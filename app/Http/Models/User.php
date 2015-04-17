@@ -19,9 +19,8 @@ class User extends Model  {
         public $rules = [
             'fname' => 'required|min:2',
             'lname' => 'required|min:2',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:4|confirmed',
-            'password_confirmation' => 'required'
+            'email' => 'required|email',
+            'password' => 'required|min:4',
         ];
         
          //Relationships

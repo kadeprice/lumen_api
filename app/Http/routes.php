@@ -19,6 +19,9 @@ $app->get('/', function() use ($app) {
 
 
 $app->get('api/v1/users', '\App\Http\Controllers\UsersController@index');
+
+$app->post('api/v1/users','\App\Http\Controllers\UsersController@store');
+
 $app->get('api/v1/user/{id}','\App\Http\Controllers\UsersController@show');
 
-$app->put('api/v1/user/{id}/posts','\App\Http\Controllers\UsersController@get_posts');
+$app->get('api/v1/user/{id}/posts','\App\Http\Controllers\UsersController@get_posts');
